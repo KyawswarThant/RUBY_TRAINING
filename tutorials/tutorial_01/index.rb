@@ -1,9 +1,9 @@
-content = [0, 1, 0, 1, 0, 1]
+content = [0, 1, 0, 1, 0, 1, 0, 1]
 reverse = false
 8.times do
   
   if reverse
-
+    # print content array in reverse
     for i in 1..content.length do
       print "#{content[-i]}  "
     end
@@ -17,5 +17,5 @@ reverse = false
   end
   
   puts "\n"
-  reverse = !reverse
+  reverse = !reverse  #set reverse to opposite after every 1 line
 end
