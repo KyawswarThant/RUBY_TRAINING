@@ -1,0 +1,12 @@
+<div class="age-result">
+  <% if @year && @day %> <%# Check for age greater than 1 %>
+  <p>Your Are <%= @year %> Year and <%= @day %> Days Old</p>
+  <% elsif @day && @day > 0 %>
+    <p>You Are <%= @day %> Days Old</p>
+  <% elsif @day && @day <= 0 %> <%# Check for invalid date input like earlier than today %>
+    <p>Invalid Input!</p>
+  <% else %> <%# Check for empty input %>
+    <p class="text-blue">Date connot be empty!</p>
+  <% end %>
+  <%= link_to "back", "/"%>
+</div>
