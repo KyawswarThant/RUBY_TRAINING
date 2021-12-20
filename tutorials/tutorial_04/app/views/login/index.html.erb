@@ -1,0 +1,14 @@
+<div class="form">
+  <h1>Login</h1>
+  <%= form_with url: handle_login_path, local: "true" do |form| %>
+    <div class="input">
+      <%= form.text_field :attr, placeholder: "username", name: "username", id: "username" %>
+    </div>
+    <div class="input">
+      <%= form.password_field :attr, placeholder: "password", name: "password", id: "password" %>
+    </div>
+    <div class="button">
+      <%= form.submit :login %>
+    </div>
+  <% end %>
+</div>
