@@ -3,8 +3,5 @@
   <% if @login %>
     <p>Successfully Login</p>
     <button><%= link_to "logout", handle_logout_path %></button>
-  <% else %>
-    <p><%= @error %></p>
-    <button><%= link_to "back", "/" %></button>
   <% end %>
 </div>

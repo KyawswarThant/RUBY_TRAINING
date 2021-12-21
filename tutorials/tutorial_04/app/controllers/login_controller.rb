@@ -8,14 +8,16 @@ class LoginController < ApplicationController
       @login = true
     elsif(params["username"] == "" || params["password"] == "")
       @error = "Please fill all fields!"
+      render :index
     else(params["username"] != username || params["passwor"] != password )
       @error = "Username or passwrod incorrect!"
+      render :index
     end
   end
 
   def handle_logout
-    session[:username] = nil
+    session.delete(:username)
     @login = false
-    render :index
+    redirect_to "/"
   end
 end

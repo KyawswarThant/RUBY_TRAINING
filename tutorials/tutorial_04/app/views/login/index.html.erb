@@ -7,6 +7,7 @@
     <div class="input">
       <%= form.password_field :attr, placeholder: "password", name: "password", id: "password" %>
     </div>
+    <span class="error"><%= @error %></span>
     <div class="button">
       <%= form.submit :login %>
     </div>
