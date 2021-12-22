@@ -1,0 +1,11 @@
+<h3>
+  <%= @table.title %>
+  (<span class="text-muted h5"><%= @table.user_name %>, flag: <%= @table.public_flag %></span>)
+</h3>
+<p><%= @table.description %></p>
+<button><%= link_to "edit", edit_table_path, class: "text-decoration-none text-success" %></button>
+<button>
+  <%= link_to "delete", table_path, method: "delete",
+  data: { confirm: "Are you sure?" }, class: "text-decoration-none text-danger" %>
+</button>
+<button><%= link_to "back", root_path, class: "text-decoration-none text-black" %></button>
