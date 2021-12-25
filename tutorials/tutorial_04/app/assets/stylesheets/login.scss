@@ -1,0 +1,17 @@
+// Place all the styles related to the login controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.form,
+.login-info {
+  text-align: center;
+}
+.button,
+.input {
+  margin-top: 10px;
+}
+.input:first-child {
+  margin-top: 0px;
+}
+.error {
+  color: red;
+}

@@ -1,0 +1,9 @@
+<h1 class="form-title">Enter Your Birthdate</h1>
+<%= form_with url: generate_age_path, local: "true" do |form|%>
+  <div class="input">
+    <%= form.date_field :birthdate %>
+  </div>
+  <div class="input button">
+    <%= form.submit :generate %>
+  </div>
+<% end %>
