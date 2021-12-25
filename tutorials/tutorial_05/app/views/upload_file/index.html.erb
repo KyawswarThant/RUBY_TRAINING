@@ -1,0 +1,11 @@
+<div class="file-upload">
+  <h1>Upload any text file to show its contents</h1>
+  <%= form_with url: upload_file_upload_path, local: "true" do |form| %>
+    <div>
+      <%= form.file_field :upload_file %>
+    </div>
+    <div>
+      <%= form.submit :upload, class: "button" %>
+    </div>
+  <% end %>
+</div>
