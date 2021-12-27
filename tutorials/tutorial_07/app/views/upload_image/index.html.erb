@@ -3,6 +3,7 @@
     <div class="input">
       <%= f.file_field :image %>
     </div>
+    <span class="error"><%= @error %></span>
     <div class="input">
       <%= f.label :folder %>
     </div>
@@ -10,7 +11,7 @@
       <%= f.text_field :folder %>
     </div>
     <div class="input">
-      <%= f.submit 'upload' %>
+      <%= f.submit "upload" %>
     </div>
   <% end %>
 </div>
