@@ -1,0 +1,17 @@
+<div class="form">
+  <%= form_with(url: handle_upload_path, local: true) do |f| %>
+    <div class="input">
+      <%= f.file_field :image %>
+    </div>
+    <span class="error"><%= @error %></span>
+    <div class="input">
+      <%= f.label :folder %>
+    </div>
+    <div class="input">
+      <%= f.text_field :folder %>
+    </div>
+    <div class="input">
+      <%= f.submit "upload" %>
+    </div>
+  <% end %>
+</div>

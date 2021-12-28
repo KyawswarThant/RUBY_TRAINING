@@ -1,0 +1,6 @@
+<div class="image">
+  <% if @url != nil %>
+    <img src="<%= @url %>" alt="uploaded_image" width="500" height="450">
+  <% end %>
+  <%= link_to "upload again", root_path, class: "link" %>
+</div>
