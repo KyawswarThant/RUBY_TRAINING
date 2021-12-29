@@ -1,0 +1,11 @@
+<div class="container">
+  <%= form_with do |form| %>
+    <div class="mb-3">
+      <%= form.password_field :password, placeholder: "new password", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.password_field :confirm_password, placeholder: "confirm new password", class: "form-control" %>
+    </div>
+    <%= form.submit "reset password", class: "btn btn-primary" %>
+  <% end %>
+</div>

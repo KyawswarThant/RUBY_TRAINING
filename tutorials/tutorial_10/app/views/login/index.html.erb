@@ -1,0 +1,13 @@
+<div class="container">
+  <%= form_with url: "" do |form| %>
+    <div class="mb-3">
+      <%= form.text_field :username, placeholder: "username", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.password_field :password, placeholder: "password", class: "form-control" %>
+    </div>
+    <%= form.submit :login, class: "btn btn-primary" %>
+    <%= link_to "register", new_user_path, class: "btn btn-primary" %>
+    <%= link_to "forgot password?", password_reset_path %>
+  <% end %>
+</div>
