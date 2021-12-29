@@ -1,6 +1,12 @@
 <div class="container">
-  <%= form_with url: "" do |form| %>
-    <div class="mb-3">
+  <% if notice %>
+    <span class="d-block text-success border p-2"><%= notice %></span>
+  <% elsif @error %>
+    <span class="d-block text-danger border p-2"><%= @error %></span>
+  <% end %>
+
+  <%= form_with(url: login_index_path, local: "true") do |form| %>
+    <div class="mb-3 mt-3">
       <%= form.text_field :username, placeholder: "username", class: "form-control" %>
     </div>
     <div class="mb-3">

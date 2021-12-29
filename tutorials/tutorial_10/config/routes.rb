@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Login
   get "login/index"
+  post "login/index", to: "login#handle_login"
 
   # User
   resources :user
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
   get "password/reset", to: "password_reset#index"
   post "password/reset", to: "password_reset#create"
   get "password/reset/edit", to: "password_reset#edit"
-  post "password/reset/edit", to: "password_reset#update"
+  patch "password/reset/edit", to: "password_reset#update"
 end
