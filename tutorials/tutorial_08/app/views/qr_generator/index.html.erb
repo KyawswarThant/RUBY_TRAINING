@@ -1,12 +1,12 @@
 <div class="form">
-  <h3>Upload Image to generate QR code</h3>
+  <h3>Enter text to generate QR code</h3>
   <%= form_with(url: qr_generator_upload_path, local: true) do |f| %>
     <div class="input">
-      <%= f.file_field :image %>
+      <%= f.text_field :text, placeholder: "Enter text" %>
     </div>
     <span class="error"><%= @error %></span>
     <div class="input">
-      <%= f.submit "upload" %>
+      <%= f.submit "generate" %>
     </div>
   <% end %>
 </div>

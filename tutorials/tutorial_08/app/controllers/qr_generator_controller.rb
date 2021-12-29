@@ -2,13 +2,9 @@ require "rqrcode"
 
 class QrGeneratorController < ApplicationController
   def handle_upload
-    if (params[:image])
-      uploaded_image = params[:image]
-      @filename = uploaded_image.original_filename.split(".")[0]
-      File.open(Rails.root.join("public", uploaded_image.original_filename), "wb") do |file|
-        file.write(uploaded_image.read)
-      end
-      qrcode = RQRCode::QRCode.new("http://localhost:3000/#{uploaded_image.original_filename}")
+    if (params[:text])
+      uploaded_text = params[:text]
+      qrcode = RQRCode::QRCode.new(uploaded_text)
       png = qrcode.as_png(
         bit_depth: 1,
         border_modules: 4,
@@ -21,16 +17,18 @@ class QrGeneratorController < ApplicationController
         resize_gte_to: false,
         size: 120,
       )
-      IO.binwrite(Rails.root.join("public", "#{@filename}-qrcode.png"), png.to_s)
-      session[:file] = "#{@filename}-qrcode.png"
+      IO.binwrite(Rails.root.join("public", "qrcode.png"), png.to_s)
+      session[:file] = "qrcode.png"
+
       render :show
     else
       @error = "Image can't be blank!"
+
       render :index
     end
   end
 
   def handle_download
-    send_file(Rails.root.join("public", session[:file]), type: "images/png")
+    send_file(Rails.root.join("public", session[:file]), type: "application/text")
   end
 end
