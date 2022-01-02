@@ -1,0 +1,10 @@
+<h3 class="mb-3">
+  <%= @post.title %>
+  <span class="badge bg-secondary"><%= @post.user_name %></span>
+</h3>
+<p>
+  <%= @post.description %>
+</p>
+<%= link_to :edit, edit_post_path, class: "btn btn-outline-primary" %>
+<%= link_to "delete", post_path, method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+<%= link_to :back, post_index_path, class: "btn btn-outline-dark" %>

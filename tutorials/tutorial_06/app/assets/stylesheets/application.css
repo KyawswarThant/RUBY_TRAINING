@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+.form {
+  width: 400px;
+  margin: 0 auto;
+}
+.badge {
+  font-size: 12px;
+}
