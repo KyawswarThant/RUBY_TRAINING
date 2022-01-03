@@ -1,20 +1,18 @@
 class UserController < ApplicationController
-  def index
-    @users = User.all
-  end
-
   def show
-    @user = User.find(params[:id])
+    @user = UserService.findby_id(params[:id])
+    @posts = UserService.get_all_users_posts(@user)
   end
 
   def new
-    @user = User.new
+    @user = UserService.new_user
   end
 
   def create
-    @user = User.new(user_params)
+    @user = UserRepository.create_user(user_params)
+    @save_user = UserService.save_user(@user)
 
-    if @user.save
+    if @save_user
       redirect_to @user
     else
       render :new
@@ -22,13 +20,13 @@ class UserController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = UserService.findby_id(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
-    if @user.update(user_params)
+    @user = UserService.findby_id(params[:id])
+    @update_user = UserService.update_user(@user, user_params)
+    if @update_user
       redirect_to @user
     else
       render :edit
@@ -36,10 +34,10 @@ class UserController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    user = UserService.findby_id(params[:id])
+    UserService.destroy_user(user)
 
-    redirect_to user_index_path
+    redirect_to root_path
   end
 
   private

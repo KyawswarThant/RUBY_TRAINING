@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root "login#index"
+  root "home#index"
+
+  # Home Page
+  get "home", to: "home#index"
 
   # Login
   get "login/index"
@@ -9,6 +12,9 @@ Rails.application.routes.draw do
 
   # User
   resources :user
+
+  # Post
+  resources :post
 
   # password reset
   get "password/reset", to: "password_reset#index"

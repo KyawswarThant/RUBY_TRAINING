@@ -7,9 +7,6 @@
       <%= form.email_field :email, placeholder: "Email", class: "form-control" %>
     </div>
     <div class="mt-3">
-      <%= form.password_field :password, placeholder: "Password", class: "form-control" %>
-    </div>
-    <div class="mt-3">
       <%= form.label :super_user_flag, "super user" %>
       <%= form.select :super_user_flag, [["Yes", "true"], ["No", "false"]], selected: "false", class: "form-select" %>
     </div>
