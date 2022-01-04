@@ -9,12 +9,7 @@
   </div>
   <% unless @posts.length < 1 %>
     <% @posts.each do |post| %>
-      <h3><%= post.title %></h3>
-      <span class="badge bg-secondary">
-        <%= link_to User.find(post.user_id).name, user_path({ "id": "#{User.find(post.user_id).id}" }), class: "text-decoration-none text-white" %>
-      </span>
-      <p class="mt-3"><%= post.description %></p>
-      <hr>
+      <h3><%= link_to post.title, post %></h3>
     <% end %>
   <% else %>
     <p class="text-center">No posts yet!</p>

@@ -3,13 +3,11 @@ Rails.application.routes.draw do
   root "home#index"
 
   # Home
-  get "home/index"
+  get "home", to: "home#index"
 
   # Post
-  get "posts/index"
   resources :posts
 
   # User
-  get "users/index"
   resources :users
 end
