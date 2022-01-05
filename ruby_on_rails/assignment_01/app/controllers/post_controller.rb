@@ -1,10 +1,16 @@
+require "csv"
+
 class PostController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+
   def show
     @post = PostService.findby_id(params[:id])
   end
 
   def new
-    @post = PostService.new_post
+    @post = Post.new
   end
 
   def create
@@ -36,12 +42,43 @@ class PostController < ApplicationController
     post = PostService.findby_id(params[:id])
     PostService.destroy_post(post)
 
-    redirect_to root_path
+    redirect_to post_index_path
   end
 
-  # Download CSV
-  def handle_download
+  # Download format CSV
+  def handle_format_download
     redirect_to "/Post_CSV_Format.csv"
+  end
+
+  # Download all posts in csv format
+  def handle_data_download
+    posts = PostService.get_all_posts
+
+    CSV.open(Rails.root.join("public/posts.csv"), "wb") do |csv|
+      csv << ["Title", "Description", "Public Flag"]
+      posts.each do |post|
+        csv << [post.title, post.description, post.public_flag]
+      end
+    end
+
+    redirect_to "/posts.csv"
+  end
+
+  # Handle uploaded CSV
+  def handle_upload_csv
+    if params[:csv]
+      data = CSV.parse(File.read(params[:csv]), headers: true)
+      user = User.find(session[:user_id])
+      data.length.times do |num|
+        unless data[num]["Title"] == nil && data[num]["Description"] == nil && data[num]["Public Flag"] == nil
+          user.posts.create(title: data[num]["Title"], description: data[num]["Description"], public_flag: data[num]["Public Flag"])
+        end
+      end
+
+      redirect_to user_index_path
+    else
+      redirect_to user_index_path
+    end
   end
 
   private

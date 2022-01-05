@@ -14,8 +14,8 @@
       <%= form.collection_select(:user_id, User.all, :id, :name) %>
     </div>
     <div class="mt-3">
-      <%= form.submit :update, class: "link" %>
-      <%= link_to "cancel", @post, class: "link" %>
+      <%= form.submit :update, class: "btn btn-outline-primary" %>
+      <%= link_to "cancel", @post, class: "btn btn-outline-secondary" %>
     </div>
   <% end %>
 </div>

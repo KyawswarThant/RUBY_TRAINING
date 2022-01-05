@@ -10,11 +10,6 @@ class PostRepository
       Post.find(id)
     end
 
-    # New Post
-    def new_post
-      Post.new
-    end
-
     # Update Post
     def update_post(post, params)
       post.update(params)

@@ -1,5 +1,5 @@
 <div class="container">
-  <a href="<%= root_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <a href="<%= user_index_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
   <div class="mb-5">
     <table class="table">
       <thead>
@@ -23,45 +23,5 @@
     </table>
     <%= link_to "edit", edit_user_path, class: "btn btn-outline-primary" %>
     <%= link_to "delete", user_path, method: "delete", data: { confirm: "Are you sure? This will also delete all your posts!" }, class: "btn btn-outline-danger" %>
-  </div>
-  <div class="text-center mt-3 mb-5">
-    <%= link_to "Download Format", post_csv_download_path, class: "btn btn-outline-info" %>
-    <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#csv-form">
-      Upload CSV
-    </button>
-  </div>
-  <!-- Bootstrap Modal -->
-  <div class="modal fade" id="csv-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Upload Post Data in CSV Format</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <%= form_with(local: "true", url: "") do |form| %>
-            <div>
-              <%= form.file_field :csv %>
-            </div>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Upload</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="mb-3">
-    <h1>Posts</h1>
-  </div>
-  <div>
-    <% unless @posts.length < 1 %>
-      <% @posts.each do |post| %>
-        <%= link_to post.title, post, class: "text-decoration-none text-black" %>
-      <% end %>
-    <% else %>
-      <p>No post yet!</p>
-    <% end %>
   </div>
 </div>

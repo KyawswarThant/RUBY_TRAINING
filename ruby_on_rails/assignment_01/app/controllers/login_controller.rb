@@ -4,8 +4,9 @@ class LoginController < ApplicationController
 
     if user.present?
       if user.authenticate(params[:password])
-        flash[:notice] = "Login Success"
-        redirect_to login_index_path
+        #flash[:notice] = "Login Success"
+        session[:user_id] = user.id
+        redirect_to user_index_path
       else
         @error = "Wrong Password"
 

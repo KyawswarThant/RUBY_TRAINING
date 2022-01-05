@@ -8,10 +8,6 @@ class PostService
       PostRepository.findby_id(id)
     end
 
-    def new_post
-      PostRepository.new_post
-    end
-
     def update_post(post, params)
       PostRepository.update_post(post, params)
     end

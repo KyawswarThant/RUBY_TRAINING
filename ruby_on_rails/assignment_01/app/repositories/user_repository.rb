@@ -20,16 +20,6 @@ class UserRepository
       User.find_by(name: name)
     end
 
-    # New user
-    def new_user
-      User.new
-    end
-
-    # Create user
-    def create_user(params)
-      User.new(params)
-    end
-
     # Save user
     def save_user(user)
       user.save

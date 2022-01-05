@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root "home#index"
-
-  # Home Page
-  get "home", to: "home#index"
+  root "login#index"
 
   # Login
   get "login/index"
   post "login/index", to: "login#handle_login"
 
   # User
+  get "user/logout", to: "user#handle_logout"
   resources :user
 
   # Post
-  get "post/csv/download", to: "post#handle_download"
+  get "post/csv/format/download", to: "post#handle_format_download"
+  get "post/csv/data/download", to: "post#handle_data_download"
+  post "post/csv/upload", to: "post#handle_upload_csv"
   resources :post
 
   # password reset

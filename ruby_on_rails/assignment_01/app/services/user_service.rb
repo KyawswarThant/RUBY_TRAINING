@@ -16,14 +16,6 @@ class UserService
       UserRepository.findby_name(name)
     end
 
-    def new_user
-      UserRepository.new_user
-    end
-
-    def create_user(params)
-      UserRepository.create_user(params)
-    end
-
     def save_user(user)
       UserRepository.save_user(user)
     end
