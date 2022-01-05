@@ -1,0 +1,36 @@
+<div class="container">
+  <%= form_with(model: @user, local: "true", url: users_path) do |form| %>
+    <div class="mt-3">
+      <%= form.text_field :name, placeholder: "Name", class: "form-control" %>
+      <% @user.errors.full_messages_for(:name).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mt-3">
+      <%= form.email_field :email, placeholder: "Email", class: "form-control" %>
+    </div>
+    <div class="mt-3">
+      <%= form.password_field :password, placeholder: "Password", class: "form-control" %>
+    </div>
+    <div class="mt-3">
+      <%= form.label :super_user_flag, "super user" %>
+      <%= form.select :super_user_flag, [["Yes", "true"], ["No", "false"]], selected: "false", class: "form-select" %>
+    </div>
+    <div class="mt-3">
+      <%= form.telephone_field :phone, placeholder: "Ph No", class: "form-control" %>
+    </div>
+    <div class="mt-3">
+      <%= form.text_area :address, placeholder: "Address", class: "form-control" %>
+    </div>
+    <div class="mt-3">
+      <%= form.label :birthday, "Birth Date" %>
+    </div>
+    <div class="mt-3">
+      <%= form.date_field :birthday, class: "form-control" %>
+    </div>
+    <div class="mt-3">
+      <%= form.submit :create, class: "link" %>
+      <%= link_to "cancel", users_path, class: "link" %>
+    </div>
+  <% end %>
+</div>

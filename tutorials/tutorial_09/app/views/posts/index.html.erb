@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="text-center mb-5">
+    <h3>Posts</h3>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <li class="breadcrumb-item active" aria-current="page">Posts</li>
+    </ol>
+    <%= link_to "Create Post", new_post_path, class: "link" %>
+  </div>
+  <% unless @posts.length < 1 %>
+    <% @posts.each do |post| %>
+      <h3><%= link_to post.title, post %></h3>
+    <% end %>
+  <% else %>
+    <p class="text-center">No posts yet!</p>
+  <% end %>
+</div>
