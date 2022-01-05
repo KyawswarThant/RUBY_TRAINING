@@ -1,0 +1,27 @@
+<div class="form">
+  <%= form_with(model: @post, local: "true", url: post_index_path) do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, "Title", class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :description, "Description", class: "form-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+    <div>
+      <%= form.label :public_flag, "Public Flag", class: "form-label" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :public_flag, "True", class: "form-check-label" %>
+      <%= form.radio_button :public_flag, "true", class: "form-check-input" %>
+      <%= form.label :public_flag, "False", class: "form-check-label" %>
+      <%= form.radio_button :public_flag, "false", class: "form-check-input" %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :user_name, "User Name", class: "form-label" %>
+      <%= form.text_field :user_name, class: "form-control" %>
+    </div>
+    <%= form.submit :create, class: "btn btn-primary" %>
+    <%= link_to :back, post_index_path, class: "btn btn-secondary" %>
+  <% end %>
+</div>
