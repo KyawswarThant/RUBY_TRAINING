@@ -1,0 +1,20 @@
+<div class="container">
+  <a href="<%= root_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <% if notice %>
+    <span class="d-block text-success border p-2"><%= notice %></span>
+  <% elsif @error %>
+    <span class="d-block text-danger border p-2"><%= @error %></span>
+  <% end %>
+
+  <%= form_with(url: login_index_path, local: "true") do |form| %>
+    <div class="mb-3 mt-3">
+      <%= form.text_field :username, placeholder: "username", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= form.password_field :password, placeholder: "password", class: "form-control" %>
+    </div>
+    <%= form.submit :login, class: "btn btn-primary" %>
+    <%= link_to "register", new_user_path, class: "btn btn-primary" %>
+    <%= link_to "forgot password?", password_reset_path %>
+  <% end %>
+</div>
