@@ -1,0 +1,8 @@
+<div class="container mb-5">
+  <nav class="text-end">
+    <% if session[:user_id] %>
+      <i class="fas fa-user-alt"></i><%= link_to User.find(session[:user_id]).name, User.find(session[:user_id]), class: "text-decoration-none text-black" %>
+      <%= link_to "Logout", user_logout_path, class: "btn btn-outline-primary" %>
+    <% end %>
+  </nav>
+</div>
