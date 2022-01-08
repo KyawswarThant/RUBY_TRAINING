@@ -1,6 +1,7 @@
 class UserController < ApplicationController
   def index
-    @users = User.all
+    @users = UserService.get_all_users
+    @info = "No user yet!"
   end
 
   def show
@@ -41,6 +42,7 @@ class UserController < ApplicationController
   def destroy
     user = UserService.findby_id(params[:id])
     UserService.destroy_user(user)
+    session.delete(:user_id)
 
     redirect_to login_index_path
   end
@@ -53,42 +55,10 @@ class UserController < ApplicationController
 
   # Search
   def handle_search
-    fields = Array.new
-    conditions = Array.new
-    # Add fields into one array
-    fields.push("name") unless params[:name] == ""
-    fields.push("address") unless params[:address] == ""
-    fields.push("super_user_flag") unless params[:user_type] == ""
-    fields.push("email") unless params[:email] == ""
-    fields.push("birthday") unless params[:birthday] == ""
-    fields.push("phone") unless params[:phone] == ""
-
-    # Combine field and value
-    fields.each do |field|
-      if field == "address"
-        conditions.push(" #{field} LIKE '%#{params["#{field}"]}%' ")
-      elsif field == "super_user_flag" && params[:user_type] == "super user"
-        conditions.push(" #{field} = '1' ")
-      elsif field == "super_user_flag" && params[:user_type] == "normal user"
-        conditions.push(" #{field} = '0' ")
-      else
-        conditions.push(" #{field} = '#{params["#{field}"]}' ")
-      end
+    unless (params[:name] == "" && params[:address] == "" && params[:user_type] == "" && params[:email] == "" && params[:birthday] == "" && params[:phone] == "")
+      @users = UserService.search_user(params)
     end
-
-    # Make query for sql where statement
-    query = conditions.join(" AND ")
-    sql = "
-      SELECT id, name, email, phone, address, birthday, 
-      CASE
-        WHEN super_user_flag = 1 THEN 'super user'
-        WHEN super_user_flag = 0 THEN 'normal user'
-      END AS super_user_flag
-      FROM users
-      where #{query}
-    "
-    @results = UserService.search_user(sql)
-
+    @info = "No User Found!"
     render :index
   end
 
