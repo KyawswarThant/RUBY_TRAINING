@@ -28,7 +28,6 @@ class PasswordResetController < ApplicationController
       end
     else
       @error = "Passwords didn't match!"
-
       render :edit
     end
   end

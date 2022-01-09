@@ -31,6 +31,7 @@ class PostController < ApplicationController
   def update
     @post = PostService.findby_id(params[:id])
     @update_post = PostService.update_post(@post, post_params)
+
     if @update_post
       redirect_to @post
     else
@@ -41,7 +42,6 @@ class PostController < ApplicationController
   def destroy
     post = PostService.findby_id(params[:id])
     PostService.destroy_post(post)
-
     redirect_to post_index_path
   end
 
@@ -60,7 +60,6 @@ class PostController < ApplicationController
         csv << [post.title, post.description, post.public_flag]
       end
     end
-
     redirect_to "/posts.csv"
   end
 
@@ -69,12 +68,12 @@ class PostController < ApplicationController
     if params[:csv]
       data = CSV.parse(File.read(params[:csv]), headers: true)
       user = User.find(session[:user_id])
+
       data.length.times do |num|
         unless data[num]["Title"] == nil && data[num]["Description"] == nil && data[num]["Public Flag"] == nil
           user.posts.create(title: data[num]["Title"], description: data[num]["Description"], public_flag: data[num]["Public Flag"])
         end
       end
-
       redirect_to user_index_path
     else
       redirect_to user_index_path

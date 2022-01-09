@@ -9,12 +9,10 @@ class LoginController < ApplicationController
         redirect_to user_index_path
       else
         @error = "Wrong Password"
-
         render :index
       end
     else
       @error = "Username doesn't exist"
-
       render :index
     end
   end

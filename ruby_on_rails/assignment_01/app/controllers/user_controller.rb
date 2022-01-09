@@ -34,6 +34,7 @@ class UserController < ApplicationController
   def update
     @user = UserService.findby_id(params[:id])
     @update_user = UserService.update_user(@user, user_params)
+
     if @update_user
       redirect_to @user
     else
@@ -44,13 +45,11 @@ class UserController < ApplicationController
   def destroy
     user = UserService.findby_id(params[:id])
     UserService.destroy_user(user)
-
     redirect_to login_index_path
   end
 
   def handle_logout
     session.delete(:user_id)
-
     redirect_to login_index_path
   end
 
