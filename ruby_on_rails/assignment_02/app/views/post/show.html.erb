@@ -1,0 +1,21 @@
+<div class="container">
+  <a href="<%= post_index_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Public Flag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @post.title %></td>
+        <td><%= @post.description %></td>
+        <td><%= @post.public_flag %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "edit", edit_post_path, class: "btn btn-outline-primary" %>
+  <%= link_to "delete", post_path, method: "delete", data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+</div>

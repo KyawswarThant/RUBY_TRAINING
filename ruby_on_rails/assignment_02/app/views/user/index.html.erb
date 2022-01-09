@@ -1,0 +1,61 @@
+<div class="container">
+  <a href="<%= home_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <div class="clearfix">
+    <%= form_with(local: "true", url: user_search_path) do |form| %>
+      <div class="input">
+        <div>
+          <%= form.label :name, class: "d-block" %>
+          <%= form.text_field :name %>
+        </div>
+        <div>
+          <%= form.label :address, class: "d-block" %>
+          <%= form.text_field :address %>
+        </div>
+        <div>
+          <%= form.label :user_type, class: "d-block" %>
+          <%= form.text_field :user_type %>
+        </div>
+        <div>
+          <%= form.label :email, class: "d-block" %>
+          <%= form.email_field :email %>
+        </div>
+        <div>
+          <%= form.label :birthday, class: "d-block" %>
+          <%= form.date_field :birthday %>
+        </div>
+        <div>
+          <%= form.label :phone, class: "d-block" %>
+          <%= form.telephone_field :phone %>
+        </div>
+      </div>
+      <div class="button">
+        <%= form.submit :search, class: "btn btn-outline-info" %>
+      </div>
+    <% end %>
+  </div>
+  <% unless @users == nil || @users.size < 1 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone No</th>
+          <th>Address</th>
+          <th>Birthday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |result| %>
+          <tr>
+            <% result.each do |res| %>
+              <td><%= res %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center mt-5"><%= @info %></p>
+  <% end %>
+</div>

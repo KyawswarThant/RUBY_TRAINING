@@ -1,0 +1,10 @@
+<div class="container">
+  <h4 class="mb-3">Enter your email to get reset link</h4>
+  <%= form_with do |form| %>
+    <div class="mb-3">
+      <%= form.email_field :email, placeholder: "Your Email", class: "form-control" %>
+    </div>
+    <%= form.submit "reset password", class: "btn btn-primary" %>
+    <%= link_to "back", login_index_path, class: "btn btn-secondary" %>
+  <% end %>
+</div>
