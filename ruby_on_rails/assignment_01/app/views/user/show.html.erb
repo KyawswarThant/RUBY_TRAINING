@@ -1,0 +1,27 @@
+<div class="container">
+  <a href="<%= user_index_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <div class="mb-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone No</th>
+          <th>Address</th>
+          <th>Birthday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @user.name %></td>
+          <td><%= @user.email %></td>
+          <td><%= @user.phone %></td>
+          <td><%= @user.address %></td>
+          <td><%= @user.birthday %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "edit", edit_user_path, class: "btn btn-outline-primary" %>
+    <%= link_to "delete", user_path, method: "delete", data: { confirm: "Are you sure? This will also delete all your posts!" }, class: "btn btn-outline-danger" %>
+  </div>
+</div>
