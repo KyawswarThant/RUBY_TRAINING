@@ -1,19 +1,29 @@
 <div class="container">
-  <div class="text-center mb-5">
-    <h1>Users</h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-      <li class="breadcrumb-item active" aria-current="page">Users</li>
-    </ol>
-    <%= link_to "Create User", new_user_path, class: "link" %>
-  </div>
-  <div class="text-center">
-    <% unless @users.length < 1 %>
-      <% @users.each do |user| %>
-        <h3><i class="fas fa-user-alt"></i><%= link_to user.name, user, class: "text-decoration-none text-black" %></h3>
-      <% end %>
-    <% else %>
-      <p>No user yet!</p>
-    <% end %>
-  </div>
+  <a href="<%= home_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <h1 class="text-center">All Users</h1>
+  <% unless @users == nil || @users.size < 1 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone No</th>
+          <th>Address</th>
+          <th>Birthday</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <% user.each do |result| %>
+              <td><%= result %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center mt-5"><%= @info %></p>
+  <% end %>
 </div>

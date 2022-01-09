@@ -1,0 +1,27 @@
+<div class="container">
+  <a href="<%= home_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <h1 class="text-center">All Posts</h1>
+  <% unless @posts.length < 1 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User Id</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.user_id %></td>
+            <td><%= post.title %></td>
+            <td>
+              <%= link_to "Details", post_path(id: post.id), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>No post yet!</p>
+  <% end %>
+</div>

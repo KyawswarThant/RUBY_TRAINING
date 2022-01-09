@@ -1,0 +1,32 @@
+<div class="container">
+  <% if User.all.length > 0 %>
+    <%= form_with(model: @post, local: "true", url: post_index_path) do |form| %>
+    <div class="mt-3">
+      <%= form.text_field :title, placeholder: "Title", class: "form-control" %>
+      <% @post.errors.full_messages_for(:title).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mt-3">
+      <%= form.label :public_flag, "public" %>
+      <%= form.select :public_flag, [["Yes", "true"], ["No", "false"]], selected: "false", class: "form-select" %>
+    </div>
+    <div class="mt-3">
+      <%= form.text_area :description, placeholder: "Description", class: "form-control" %>
+      <% @post.errors.full_messages_for(:description).each do |message| %>
+        <div class="text-danger"><%= message %></div>
+      <% end %>
+    </div>
+    <div class="mt-3">
+      <%= form.submit :create, class: "link" %>
+      <%= link_to "cancel", root_path, class: "link" %>
+    </div>
+  <% end %>
+  <% else %>
+    <div class="text-center">
+      <p>There is no user to create post!</p>
+      <%= link_to "Create User", new_user_path, class: "link" %>
+      <%= link_to "back", root_path, class: "link" %>
+    </div>
+  <% end %>
+</div>

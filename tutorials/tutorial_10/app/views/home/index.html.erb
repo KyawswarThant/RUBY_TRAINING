@@ -1,0 +1,34 @@
+<% if @user %>
+  <div class="container">
+    <div class="text-center mb-5">
+      <h1>Posts</h1>
+      <%= link_to "All Users", user_index_path %>
+      <%= link_to "All Posts", post_index_path %>
+    </div>
+    <div class="text-center mt-3 mb-5">
+      <%= link_to "Create Post", new_post_path, class: "btn btn-outline-info" %>
+    </div>
+    <!-- Show User Posts -->
+    <% unless @posts.length < 1 %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.title %></td>
+            <td>
+              <%= link_to "Details", post_path(id: post.id), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>No post yet!</p>
+    <% end %>
+  </div>
+<% end %>

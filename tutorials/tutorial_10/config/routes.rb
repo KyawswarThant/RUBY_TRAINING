@@ -3,12 +3,19 @@ Rails.application.routes.draw do
 
   root "login#index"
 
+  # Home Page
+  get "home", to: "home#index"
+
   # Login
   get "login/index"
   post "login/index", to: "login#handle_login"
 
   # User
+  get "user/logout", to: "user#handle_logout"
   resources :user
+
+  # Post
+  resources :post
 
   # password reset
   get "password/reset", to: "password_reset#index"

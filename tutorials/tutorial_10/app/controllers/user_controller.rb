@@ -1,10 +1,11 @@
 class UserController < ApplicationController
   def index
-    @users = User.all
+    @users = UserService.get_all_users
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = UserService.findby_id(params[:id])
+    @posts = UserService.get_all_users_posts(@user)
   end
 
   def new
@@ -15,20 +16,21 @@ class UserController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user
+      flash[:notice] = "Created Account Successfully"
+      redirect_to login_index_path
     else
       render :new
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = UserService.findby_id(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
-    if @user.update(user_params)
+    @user = UserService.findby_id(params[:id])
+    @update_user = UserService.update_user(@user, user_params)
+    if @update_user
       redirect_to @user
     else
       render :edit
@@ -36,10 +38,16 @@ class UserController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    user = UserService.findby_id(params[:id])
+    UserService.destroy_user(user)
+    session.delete(:user_id)
+    flash[:notice] = "Your Account has been deleted!"
+    redirect_to login_index_path
+  end
 
-    redirect_to user_index_path
+  def handle_logout
+    session.delete(:user_id)
+    redirect_to login_index_path
   end
 
   private
