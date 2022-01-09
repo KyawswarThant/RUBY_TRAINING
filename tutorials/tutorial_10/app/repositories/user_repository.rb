@@ -2,7 +2,15 @@ class UserRepository
   class << self
     # Retrieve all users from user table
     def get_all_users
-      User.all
+      sql = "
+        SELECT id, name, email, phone, address, birthday,
+        CASE
+          WHEN super_user_flag = 1 THEN 'super user'
+          WHEN super_user_flag = 0 THEN 'normal user'
+        End
+        FROM users;
+      "
+      ActiveRecord::Base.connection.execute(sql)
     end
 
     # Get all posts created by user
@@ -18,21 +26,6 @@ class UserRepository
     # Find user by name
     def findby_name(name)
       User.find_by(name: name)
-    end
-
-    # New user
-    def new_user
-      User.new
-    end
-
-    # Create user
-    def create_user(params)
-      User.new(params)
-    end
-
-    # Save user
-    def save_user(user)
-      user.save
     end
 
     # Update user

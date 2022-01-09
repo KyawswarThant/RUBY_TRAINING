@@ -1,18 +1,22 @@
 class PostController < ApplicationController
+  def index
+    @posts = PostService.get_all_posts
+  end
+
   def show
     @post = PostService.findby_id(params[:id])
   end
 
   def new
-    @post = PostService.new_post
+    @post = Post.new
   end
 
   def create
-    author = User.find((params[:post])[:user_id])
+    author = UserService.findby_id(session[:user_id])
     @post = author.posts.new(post_params)
 
     if @post.save
-      redirect_to @post
+      redirect_to post_index_path
     else
       render :new
     end
@@ -35,8 +39,7 @@ class PostController < ApplicationController
   def destroy
     post = PostService.findby_id(params[:id])
     PostService.destroy_post(post)
-
-    redirect_to root_path
+    redirect_to post_index_path
   end
 
   private

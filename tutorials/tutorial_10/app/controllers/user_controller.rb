@@ -1,19 +1,23 @@
 class UserController < ApplicationController
+  def index
+    @users = UserService.get_all_users
+  end
+
   def show
     @user = UserService.findby_id(params[:id])
     @posts = UserService.get_all_users_posts(@user)
   end
 
   def new
-    @user = UserService.new_user
+    @user = User.new
   end
 
   def create
-    @user = UserRepository.create_user(user_params)
-    @save_user = UserService.save_user(@user)
+    @user = User.new(user_params)
 
-    if @save_user
-      redirect_to @user
+    if @user.save
+      flash[:notice] = "Created Account Successfully"
+      redirect_to login_index_path
     else
       render :new
     end
@@ -36,8 +40,14 @@ class UserController < ApplicationController
   def destroy
     user = UserService.findby_id(params[:id])
     UserService.destroy_user(user)
+    session.delete(:user_id)
+    flash[:notice] = "Your Account has been deleted!"
+    redirect_to login_index_path
+  end
 
-    redirect_to root_path
+  def handle_logout
+    session.delete(:user_id)
+    redirect_to login_index_path
   end
 
   private

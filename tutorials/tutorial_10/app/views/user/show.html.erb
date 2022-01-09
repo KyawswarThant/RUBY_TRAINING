@@ -1,5 +1,5 @@
 <div class="container">
-  <a href="<%= root_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
+  <a href="<%= home_path %>" class="text-black"><i class="fas fa-arrow-left"></i></a>
   <div class="mb-5">
     <table class="table">
       <thead>
@@ -23,18 +23,5 @@
     </table>
     <%= link_to "edit", edit_user_path, class: "link" %>
     <%= link_to "delete", user_path, method: "delete", data: { confirm: "Are you sure? This will also delete all your posts!" }, class: "link text-danger" %>
-    <%= link_to "Create Post", new_post_path, class: "link" %>
-  </div>
-  <div class="mb-3">
-    <h1>Posts</h1>
-  </div>
-  <div>
-    <% unless @posts.length < 1 %>
-      <% @posts.each do |post| %>
-        <h3><%= link_to post.title, post, class: "text-decoration-none text-black" %></h3>
-      <% end %>
-    <% else %>
-      <p>No post yet!</p>
-    <% end %>
   </div>
 </div>
