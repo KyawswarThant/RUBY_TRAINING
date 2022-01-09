@@ -1,0 +1,7 @@
+$("#create-post").bind("ajax:success", function(event) {
+   title = $(this).find("#post_title").val();
+   description = $(this).find("#post_description").val();
+   console.log(event)
+   $("#t-body").append("<tr><td>"+title+"</td><td>"+description+"</td></tr>")
+   $("#create-post").trigger("reset")
+});
