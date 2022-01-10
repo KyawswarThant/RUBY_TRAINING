@@ -1,0 +1,4 @@
+$("#create-post").bind("ajax:success", () => {
+  $(".t-body").replaceWith("<%= j render "posts", posts: @posts %>")
+  $("#create-post").trigger("reset")
+});
