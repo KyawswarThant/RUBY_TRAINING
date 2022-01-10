@@ -29,7 +29,7 @@
           <th>Description</th>
         </tr>
       </thead>
-      <tbody id="t-body">
+      <tbody class="t-body">
         <% @posts.each do |post| %>
           <tr>
             <td><%= post.title %></td>
@@ -42,6 +42,18 @@
       </tbody>
     </table>
   <% else %>
-    <p class="text-center mt-5">No Posts Yet!</p>
+    <table class="table mt-3">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="t-body">
+        <tr>
+          <td colspan="2" class="text-center">No posts yet!</td>
+        </tr>
+      </tbody>
+    </table>
   <% end %>
 </div>

@@ -1,0 +1,11 @@
+<tbody class="t-body">
+  <% posts.each do |post| %>
+    <tr>
+      <td><%= post.title %></td>
+      <td><%= post.description %></td>
+      <td>
+        <%= link_to "delete", post_path(id: post.id), method: "delete", data: { confirm: "Are you sure?" }, remote: "true", class: "btn btn-outline-danger delete-post" %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>

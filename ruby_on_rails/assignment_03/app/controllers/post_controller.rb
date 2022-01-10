@@ -7,21 +7,19 @@ class PostController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
+      @posts = PostService.get_all_posts
       respond_to do |format|
-        format.html { redirect_to post_index_url }
-        format.json { head :no_content }
-        format.js { render :layout => false }
+        format.js
       end
     end
   end
 
   def destroy
+    @posts = PostService.get_all_posts
     post = PostService.findby_id(params[:id])
     PostService.destroy_post(post)
     respond_to do |format|
-      format.html { redirect_to post_index_url, notice: "Post was successfully destroyed" }
-      format.json { head :no_content }
-      format.js { render :layout => false }
+      format.js
     end
   end
 

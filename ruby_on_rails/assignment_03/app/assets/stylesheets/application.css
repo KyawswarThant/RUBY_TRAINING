@@ -17,3 +17,6 @@
   width: 900px;
   margin: 0 auto;
 }
+.table th {
+  width: 300px
+}
