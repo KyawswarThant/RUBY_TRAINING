@@ -1,0 +1,38 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">Users</li>
+    <li class="breadcrumb-item active"><%= link_to "Posts", post_index_path %></li>
+  </ol>
+  <div>
+    <h3>User Lists</h3>
+    <%= link_to "Create User", new_user_path, class: "btn btn-outline-primary" %>
+    <% if notice %>
+      <span class="d-block text-success border mt-2 p-2"><%= notice %></span>
+    <% end %>
+  </div>
+  <% unless @users.length < 2 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <% unless user.id == @login_user.id %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= user.name %></td>
+              <td>
+                <%= link_to "Details", user_path(id: user.id), class: "btn btn-outline-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <p class="text-center mt-5">No users yet!</p>
+  <% end %>
+</div>

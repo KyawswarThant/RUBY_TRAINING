@@ -1,0 +1,37 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><%= link_to "Users", user_index_path %></li>
+    <li class="breadcrumb-item active" aria-current="page">Posts</li>
+  </ol>
+  <h3>Post Lists</h3>
+  <div>
+    <%= link_to "Create Post", new_post_path, class: "btn btn-outline-primary me-5" %>
+    <%= link_to "Send Post List", get_posts_path, class: "btn btn-outline-primary" %>
+    <% if notice %>
+      <span class="d-block text-success border mt-2 p-2"><%= notice %></span>
+    <% end %>
+  </div>
+  <% unless @posts.length < 1 %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>User Id</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.user_id %></td>
+            <td><%= post.title %></td>
+            <td>
+              <%= link_to "Details", post_path(id: post.id), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-center mt-5">No post yet!</p>
+  <% end %>
+</div>

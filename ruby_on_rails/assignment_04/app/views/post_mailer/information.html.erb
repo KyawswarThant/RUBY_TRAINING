@@ -1,0 +1,8 @@
+<h1>Your Posts</h1>
+<%= params[:posts].each do |post| %>
+  <ul>
+    <% post.each do |data| %>
+      <li><%= data %></li>
+    <% end %>
+  </ul>
+<% end %>

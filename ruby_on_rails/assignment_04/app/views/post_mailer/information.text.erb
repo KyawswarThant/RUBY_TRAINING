@@ -1,0 +1,7 @@
+Your Posts
+<%= params[:posts].each do |post| %>
+  <% post.each do |data| %>
+    <%= data %>
+  <% end %>
+
+<% end %>
